@@ -178,10 +178,10 @@ function App() {
                 </span>
               </a>
               <Link
-                to="/"
+                to="https://thinki.sh"
                 className="hidden sm:block text-white/80 hover:text-white text-sm md:text-base"
               >
-                avinash.sh
+                thinki.sh
               </Link>
             </div>
 
@@ -766,7 +766,7 @@ function App() {
 
             <div className="flex gap-4 mt-4 md:mt-0">
               <a
-                href="https://avinash.sh"
+                href="https://thinki.sh"
                 className="text-white/60 hover:text-white transition-colors flex items-center gap-2"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -785,14 +785,14 @@ function App() {
                   <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                   <polyline points="9 22 9 12 15 12 15 22"></polyline>
                 </svg>
-                <span className="text-sm">avinash.sh</span>
+                <span className="text-sm">thinki.sh</span>
               </a>
             </div>
           </div>
 
           <div className="mt-8 pt-6 border-t border-white/10 text-center">
             <p className="text-white/40 text-sm">
-              © {new Date().getFullYear()} PromptLib by Avinash Adluri
+              © {new Date().getFullYear()} PromptLib by thinki.sh
             </p>
           </div>
         </div>
