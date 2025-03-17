@@ -484,7 +484,7 @@ function App() {
                                   d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
                                 />
                               </svg>
-                              Copy Prompt
+                              Copy
                               {copyAlert.show &&
                                 copyAlert.promptId ===
                                   ("id" in prompt ? prompt.id : undefined) && (
@@ -493,6 +493,48 @@ function App() {
                                   </span>
                                 )}
                             </button>
+
+                            {/* New Share Button */}
+                            {"id" in prompt && prompt.id && (
+                              <button
+                                className="w-full sm:flex-1 md:w-auto text-sm bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/10 text-white px-3 py-2 rounded-md flex items-center justify-center"
+                                onClick={() => {
+                                  const url = new URL(window.location.href);
+                                  url.searchParams.set("prompt", prompt.id);
+                                  navigator.clipboard.writeText(url.toString());
+                                  setCopyAlert({
+                                    show: true,
+                                    promptId: `share-${prompt.id}`,
+                                  });
+                                  setTimeout(() => {
+                                    setCopyAlert({ show: false, promptId: "" });
+                                  }, 2000);
+                                }}
+                              >
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="h-4 w-4 mr-1.5"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+                                  />
+                                </svg>
+                                Share
+                                {copyAlert.show &&
+                                  copyAlert.promptId ===
+                                    `share-${prompt.id}` && (
+                                    <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-lime-500 text-black px-3 py-1 rounded text-xs font-medium shadow-md">
+                                      Link copied!
+                                    </span>
+                                  )}
+                              </button>
+                            )}
                             <button
                               className="w-full sm:flex-1 md:w-auto text-sm bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/10 text-white px-3 py-2 rounded-md flex items-center justify-center"
                               onClick={() => openInChatGPT(prompt.prompt)}
@@ -750,7 +792,7 @@ function App() {
 
           <div className="mt-8 pt-6 border-t border-white/10 text-center">
             <p className="text-white/40 text-sm">
-              © {new Date().getFullYear()} Avinash Adluri. All rights reserved.
+              © {new Date().getFullYear()} PromptLib by Avinash Adluri
             </p>
           </div>
         </div>
